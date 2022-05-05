@@ -1,0 +1,70 @@
+package cwiczenia_5;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Random;
+
+public class Zad3 {
+	public static void main(String[] args) throws FileNotFoundException {
+        int wielkosctab = 4;
+        int[][] tab1 = Los(wielkosctab);
+        int[][] tab2 = Los(wielkosctab);
+        int[][] tab_end = Mnoz(tab1, tab2);
+
+        String fileName = "Zad3.txt";
+        PrintWriter dok = new PrintWriter(fileName);
+
+        dok.write(tab1.length + "x" + tab1[0].length + "\n");
+        napiszTab(tab1, dok);
+        dok.write("\n");
+        dok.write(tab2.length + "x" + tab2[0].length + "\n");
+        napiszTab(tab2, dok);
+        dok.write("\n");
+        dok.write(tab_end.length + "x" + tab_end[0].length + "\n");
+        napiszTab(tab_end, dok);
+        dok.close();
+    }
+    public static void napiszTab(int[][] tab, PrintWriter napisz) 
+    {
+        for(int i = 0; i < tab.length; i++) 
+        {
+            for(int j = 0; j < tab[i].length; j++) 
+            {
+            	napisz.write(tab[i][j] + " ");
+            }
+            napisz.write("\n");
+        }
+    }
+
+    public static int[][] Los(int rozmiar) 
+    {
+        int[][] arr = new int[rozmiar][rozmiar];
+        Random rndm = new Random();
+        for(int i = 0; i < rozmiar; i++) 
+        {
+            for(int j = 0; j < rozmiar; j++) 
+            {
+                arr[i][j] = rndm.nextInt(15);}}
+        return arr;
+    }
+
+    public static int[][] Mnoz(int[][] first, int[][] second) 
+    {
+        if(first.length == second[0].length) 
+        {
+            int[][] resTab = new int[first.length][second[0].length];
+            for(int i = 0; i < first.length; i++) 
+            {
+                for(int j = 0; j < first[i].length; j++) 
+                {
+                    for(int h = 0; h < first[i].length; h++) 
+                    {
+                    	resTab[i][j] += first[i][h] * second[h][j];
+                    }
+                }
+            }
+            return resTab;
+        }
+        return null;
+    }
+}

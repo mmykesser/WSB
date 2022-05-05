@@ -1,0 +1,33 @@
+package cwiczenia_5;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+
+public class Zad2 {
+	public static void main(String[] args) {
+        Random rndm=new Random();
+        int[][] tab=new int[4][4];
+        try {
+            FileWriter dok = new FileWriter("Zad2.txt");
+            int album=92; //mam numer albumu 19209, ale z 0 nie dziala wiec dodalem 92
+            for(int i=0; i<tab.length; i++){
+                for (int j=0; j< tab.length; j++){
+                    tab[i][j]= rndm.nextInt(100) +album;
+                    System.out.print(tab[i][j]+" ");
+                    dok.write(String.valueOf(tab[i][j]));
+                    dok.write(" ");
+                }
+                System.out.println();
+                dok.write("\n");
+
+            }
+            dok.close();
+
+        }
+        catch ( IOException e){
+            System.out.println("Pomylka");
+            e.getMessage();
+        }
+	}
+}
